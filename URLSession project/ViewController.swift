@@ -64,9 +64,6 @@ class ViewController: UIViewController {
         // Specify HTTP Method
         urlRequest.httpMethod = "POST"
         
-        // Set HTTP Request Header
-        urlRequest.setValue("application/json", forHTTPHeaderField: "Content-Type")
-        
         // Specify parameters
         let parameters = [
             "username": "billy_who",
@@ -80,6 +77,9 @@ class ViewController: UIViewController {
         
         // Setting HTTP Request httpBody (request message)
         urlRequest.httpBody = httpBody
+        
+        // As we are sending a json as body, we should let API know that:
+        urlRequest.setValue("application/json", forHTTPHeaderField: "Content-Type")
         
         let task = URLSession.shared.dataTask(with: urlRequest, completionHandler: {
             (data, response, error) in
